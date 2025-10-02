@@ -4,221 +4,185 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>字コンテ作成ツール - 取扱説明書</title>
+    <script src="https://cdn.tailwindcss.com"></script>
     <style>
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
             line-height: 1.7;
-            color: #333;
-            background-color: #f8f9fa;
-            margin: 0;
-            padding: 20px;
-        }
-        main {
-            max-width: 800px;
-            margin: 40px auto;
-            background-color: #fff;
-            padding: 40px;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
         }
         h1, h2, h3 {
             font-weight: 700;
-            line-height: 1.3;
-            margin-top: 1.5em;
-            margin-bottom: 0.8em;
-            color: #2c3e50;
-        }
-        h1 {
-            font-size: 2.2em;
-            border-bottom: 2px solid #e0e0e0;
-            padding-bottom: 0.5em;
-        }
-        h2 {
-            font-size: 1.8em;
-            border-bottom: 1px solid #e0e0e0;
-            padding-bottom: 0.4em;
-        }
-        h3 {
-            font-size: 1.4em;
-        }
-        p {
-            margin-bottom: 1.2em;
-        }
-        ul {
-            padding-left: 20px;
-            margin-bottom: 1.2em;
-        }
-        li {
             margin-bottom: 0.5em;
+            margin-top: 1.5em;
+            border-bottom: 1px solid #e2e8f0;
+            padding-bottom: 0.3em;
         }
-        strong {
-            color: #0056b3;
-        }
+        h1 { font-size: 2.25rem; }
+        h2 { font-size: 1.875rem; }
+        h3 { font-size: 1.5rem; border-bottom: none; }
+        p { margin-bottom: 1.25em; }
+        ul, ol { list-style-position: inside; padding-left: 1em; margin-bottom: 1.25em; }
+        li { margin-bottom: 0.5em; }
+        ul ul { margin-left: 1.5em; margin-top: 0.5em; }
         code {
-            font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
-            background-color: #e9ecef;
+            background-color: #edf2f7;
             padding: 0.2em 0.4em;
-            margin: 0;
-            font-size: 85%;
             border-radius: 3px;
+            font-size: 0.9em;
+            font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
         }
-        hr {
-            border: 0;
-            height: 1px;
-            background-color: #e0e0e0;
-            margin: 40px 0;
+        .tip {
+            background-color: #ebf8ff;
+            border-left: 4px solid #4299e1;
+            padding: 1em 1.5em;
+            margin-bottom: 1.25em;
+            border-radius: 0 4px 4px 0;
         }
-        .image-placeholder {
-            display: block;
-            background-color: #f0f0f0;
-            border: 1px dashed #ccc;
-            text-align: center;
-            padding: 40px;
-            margin: 20px 0;
-            border-radius: 4px;
-            color: #888;
+        .point {
+            background-color: #fffaf0;
+            border-left: 4px solid #f6ad55;
+            padding: 1em 1.5em;
+            margin-bottom: 1.25em;
+            border-radius: 0 4px 4px 0;
         }
-        .callout {
-            padding: 15px;
-            margin: 20px 0;
-            border-left: 5px solid;
-            border-radius: 4px;
-        }
-        .callout-point {
-            background-color: #fffbe6;
-            border-color: #f59e0b;
-        }
-        .callout-tips {
-            background-color: #e6f7ff;
-            border-color: #1890ff;
+        .placeholder-img {
+            background-color: #f7fafc;
+            border: 1px dashed #cbd5e0;
+            color: #718096;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            border-radius: 0.5rem;
+            margin: 1.25em 0;
         }
     </style>
 </head>
-<body>
+<body class="bg-white text-gray-800 p-8 md:p-16 max-w-4xl mx-auto">
+    
+    <h1 class="text-4xl">字コンテ作成ツール - 取扱説明書 (v2.2)</h1>
+    <p class="text-gray-600">このドキュメントは、動画の字コンテ（テキストベースの絵コンテ）作成を効率化するための「字コンテ作成ツール」の取扱説明書です。このツールを使えば、アイデアの整理から詳細な構成案の作成まで、シームレスに行うことができます。</p>
 
-    <main>
-        <h1>字コンテ作成ツール - 取扱説明書</h1>
+    <h2 class="text-3xl">1. はじめに - 画面の見かた</h2>
+    <p>ツールは大きく分けて、<strong>①ヘッダー</strong>、<strong>②メモパネル</strong>、<strong>③タイムラインエリア</strong>の3つで構成されています。</p>
+    
+    <ul>
+        <li><strong>① ヘッダー:</strong> 機能ボタンが配置されています。作品のエクスポートや操作の取り消しなど、全体に関わる操作を行います。</li>
+        <li><strong>② メモパネル:</strong> アイデアや構成案、キャラクターのセリフ案などを自由に書き留めておけるスペースです。タイムラインに配置する前のアイデアをストックするのに便利です。</li>
+        <li><strong>③ タイムラインエリア:</strong> シーンブロックを配置し、動画全体の流れを組み立てるメインの作業領域です。</li>
+    </ul>
 
-        <p>このドキュメントは、動画の字コンテ作成を効率化するための「字コンテ作成ツール」の取扱説明書です。このツールを使えば、アイデアの整理から詳細な構成案の作成まで、シームレスに行うことができます。</p>
+    <h2 class="text-3xl">2. 基本的な使い方</h2>
+    <p>まずは、タイムラインを組み立てるための基本的な操作を覚えましょう。</p>
+    <h3>レーンの操作（追加・名称変更・削除）</h3>
+    <p>「レーン」は、構成案ごとやパートごとにシーンをまとめるための横長のタイムラインです。複数のレーンを使って、構成案の比較検討ができます。</p>
+    <ul>
+        <li><strong>追加:</strong> ヘッダーの「+ 比較案レーンを追加」ボタンをクリックします。</li>
+        <li><strong>名称変更:</strong> 「比較案 1」などのタイトル部分をクリックすると、自由に名前を変更できます。</li>
+        <li><strong>削除:</strong> 各レーンのタイトル横に表示される「×」ボタンをクリックします。</li>
+    </ul>
+    <div class="point"><strong>POINT:</strong> レーンを削除すると、中のシーンもすべて削除されるため、誤操作防止の確認画面が表示されます。</div>
 
-        <h2>1. はじめに - 画面の見かた</h2>
-        <p>ツールは大きく分けて、<strong>①ヘッダー</strong>、<strong>②メモパネル</strong>、<strong>③タイムラインエリア</strong>の3つで構成されています。</p>
-        <div class="image-placeholder"></div>
-        <ul>
-            <li><strong>① ヘッダー:</strong> 機能ボタンが配置されています。作品のエクスポートや操作の取り消しなど、全体に関わる操作を行います。</li>
-            <li><strong>② メモパネル:</strong> アイデアや構成案、キャラクターのセリフ案などを自由に書き留めておけるスペースです。タイムラインに配置する前のアイデアをストックするのに便利です。</li>
-            <li><strong>③ タイムラインエリア:</strong> シーンブロックを配置し、動画全体の流れを組み立てるメインの作業領域です。</li>
-        </ul>
+    <h3>シーンの操作（追加・削除・移動）</h3>
+    <p>「シーン」は、動画の各カットを表すブロックです。</p>
+    <ul>
+        <li><strong>追加:</strong>
+            <ul>
+                <li><strong>特定のレーンに:</strong> 各レーンのタイトル横にある小さな「+」ボタンで、そのレーンに直接シーンを追加します。</li>
+                <li><strong>一番上のレーンに:</strong> ヘッダーの「+ シーンを追加」ボタンで、最上段のレーンにシーンを追加します。</li>
+            </ul>
+        </li>
+        <li><strong>削除:</strong> 各シーンブロックにカーソルを合わせると表示される「×」ボタンをクリックすると、即座に削除されます。</li>
+        <li><strong>移動:</strong> シーンブロックを掴んでドラッグ＆ドロップすることで、順番を入れ替えたり、別のレーンに移動させたりできます。</li>
+    </ul>
+    <div class="tip"><strong>TIPS:</strong> 間違えてシーンを削除しても、「元に戻す」機能（<code>Ctrl</code>+<code>Z</code>）ですぐに復元できます。</div>
 
-        <hr>
+    <h2 class="text-3xl">3. シーンを編集する</h2>
+    <p>シーンブロックには、映像制作に必要な情報を細かく記述できます。</p>
+    <h3>テキストの入力</h3>
+    <p>シーンのタイトル、「映像」や「音・セリフ・歌詞」などの各項目は、クリックするだけで直接テキストを入力・編集できます。</p>
+    <h3>秒数（長さ）の調整</h3>
+    <p>シーンの長さを変更すると、タイムライン上のブロックの幅も連動して変わります。</p>
+    <ul>
+        <li><strong>数値入力:</strong> 「秒数」欄に直接数値を入力します。</li>
+        <li><strong>ドラッグで変更:</strong> ブロックの右端にカーソルを合わせ、左右にドラッグすることでも直感的に長さを変更できます。</li>
+    </ul>
+    
 
-        <h2>2. 基本的な使い方</h2>
-        <p>まずは、タイムラインを組み立てるための基本的な操作を覚えましょう。</p>
+    <h3>色分けで整理</h3>
+    <p>シーンの種類やパートごとに色分けをすることで、構成を視覚的に把握しやすくなります。「タグ」欄の横にある丸いボタンをクリックすると、カラーパレットが開きます。任意の色を選択すると、シーンブロックの左端に色が付きます。</p>
+    
+    
+    <h3>備考・タグ欄の活用</h3>
+    <p>詳細な情報を書き込むための「備考」と「タグ」欄は、クリックで表示/非表示を切り替えられます。デフォルトでは非表示になっており、タイムライン全体をすっきりと見渡せます。</p>
 
-        <h3>レーンの操作（追加・名称変更・削除）</h3>
-        <p>「レーン」は、構成案ごとやパートごとにシーンをまとめるための横長のタイムラインです。複数のレーンを使って、構成案の比較検討ができます。</p>
-        <ul>
-            <li><strong>追加:</strong> ヘッダーの「+ 比較案レーンを追加」ボタンをクリックします。</li>
-            <li><strong>名称変更:</strong> 「比較案 1」などのタイトル部分をクリックすると、自由に名前を変更できます。</li>
-            <li><strong>削除:</strong> 各レーンのタイトル横に表示される「×」ボタンをクリックします。
-                <div class="callout callout-point"><strong>POINT:</strong> レーンを削除すると、中のシーンもすべて削除されるため、誤操作防止の確認画面が表示されます。</div>
-            </li>
-        </ul>
+    <h2 class="text-3xl">4. シーンとレーンの複製（コピー＆ペースト）</h2>
+    <p>同じ内容を再利用したり、構成のバリエーションを作成したりするのに便利な機能です。</p>
+    <h3>シーンのコピー＆ペースト</h3>
+    <ol>
+        <li><strong>コピー:</strong>
+            <ul>
+                <li><strong>ボタン:</strong> 各シーンのタイトル横にある <strong>コピーボタン `[📋]`</strong> をクリックします。</li>
+                <li><strong>ショートカット:</strong> コピーしたいシーンブロックをクリックで選択するか、中のテキスト入力欄をアクティブにした状態で <code>Ctrl</code> + <code>C</code> を押します。</li>
+            </ul>
+        </li>
+        <li><strong>ペースト:</strong>
+            <ul>
+                <li><strong>ボタン:</strong> 貼り付けたいレーンにある <strong>ペーストボタン `[📎]`</strong> をクリックすると、そのレーンの末尾にシーンが追加されます。</li>
+                <li><strong>ショートカット:</strong> 貼り付けたいレーンにマウスカーソルを合わせた状態で <code>Ctrl</code> + <code>V</code> を押します。</li>
+            </ul>
+        </li>
+    </ol>
+    <h3>比較案レーンの複製</h3>
+    <p>レーン全体（含まれる全シーン）を丸ごとコピーして、新しいレーンを作成します。</p>
+    <ul>
+        <li><strong>複製:</strong> 各レーンのタイトル横にある <strong>複製ボタン `[❐]`</strong> をクリックします。「（元のレーン名）のコピー」という名前で、すぐ下に新しいレーンが作成されます。</li>
+    </ul>
 
-        <h3>シーンの操作（追加・削除・移動）</h3>
-        <p>「シーン」は、動画の各カットを表すブロックです。</p>
-        <ul>
-            <li><strong>追加:</strong>
-                <ul>
-                    <li><strong>特定のレーンに:</strong> 各レーンのタイトル横にある小さな「+」ボタンで、そのレーンに直接シーンを追加します。</li>
-                    <li><strong>一番上のレーンに:</strong> ヘッダーの「+ シーンを追加」ボタンで、最上段のレーンにシーンを追加します。</li>
-                </ul>
-            </li>
-            <li><strong>削除:</strong> 各シーンブロックにカーソルを合わせると表示される「×」ボタンをクリックすると、即座に削除されます。
-                <div class="callout callout-tips"><strong>TIPS:</strong> 間違えて削除しても、「元に戻す」機能（<code>Ctrl</code>+<code>Z</code>）ですぐに復元できます。</div>
-            </li>
-            <li><strong>移動:</strong> シーンブロックを掴んでドラッグ＆ドロップすることで、順番を入れ替えたり、別のレーンに移動させたりできます。</li>
-        </ul>
+    <h2 class="text-3xl">5. 便利な機能</h2>
+    <h3>時間軸マーカー</h3>
+    <p>BGMの開始位置や重要なカットなど、特定の時間に目印（マーカー）を付けられます。</p>
+    <ul>
+        <li><strong>追加:</strong> タイムルーラー（時間軸）上を<strong>ダブルクリック</strong>します。</li>
+        <li><strong>編集:</strong> マーカーのテキスト部分をクリックすると、ラベル名を自由に変更できます。</li>
+        <li><strong>移動:</strong> マーカー上部の丸いハンドルを左右にドラッグして、位置を微調整できます。</li>
+        <li><strong>削除:</strong> マーカーにカーソルを合わせると表示される「×」ボタンで削除できます。</li>
+    </ul>
+    
 
-        <hr>
+    <h3>ズーム機能</h3>
+    <ul>
+        <li><strong>ボタン操作:</strong> ヘッダーの「ズーム」セクションにある「+」「-」ボタンでタイムラインを拡大・縮小できます。</li>
+        <li><strong>ショートカット:</strong> <code>Ctrl</code>キー（Macでは<code>Cmd</code>キー）を押しながらマウスホイールを上下にスクロールすることでも、スムーズに拡縮できます。</li>
+    </ul>
 
-        <h2>3. シーンを編集する</h2>
-        <p>シーンブロックには、映像制作に必要な情報を細かく記述できます。</p>
+    <h3>メモパネルのサイズ調整</h3>
+    <p>画面左の「メモ」パネルとタイムラインの間の境界線をドラッグすることで、自由に幅を調整できます。</p>
 
-        <h3>テキストの入力</h3>
-        <p>シーンのタイトル、「映像」や「音・セリフ・歌詞」などの各項目は、クリックするだけで直接テキストを入力・編集できます。</p>
+    <h2 class="text-3xl">6. データの管理</h2>
+    <h3>自動保存機能</h3>
+    <p>編集を加えると約1.5秒後に、自動でブラウザに作業内容が保存されます。ブラウザを更新したり閉じたりしても、次回開いた際に前回の状態が復元されるので安心です。ヘッダーに「保存中...」「保存済み」のステータスが一時的に表示されます。</p>
 
-        <h3>秒数（長さ）の調整</h3>
-        <p>シーンの長さを変更すると、タイムライン上のブロックの幅も連動して変わります。</p>
-        <ul>
-            <li><strong>数値入力:</strong> 「秒数」欄に直接数値を入力します。</li>
-            <li><strong>ドラッグで変更:</strong> ブロックの右端にカーソルを合わせ、左右にドラッグすることでも直感的に長さを変更できます。</li>
-        </ul>
-        <div class="image-placeholder"></div>
+    <h3>元に戻す・やり直す（Undo/Redo）</h3>
+    <p>ヘッダーの矢印ボタン、または以下のショートカットキーで、マーカーの追加や削除を含め、ほぼ全ての操作を取り消したり、やり直したりできます。</p>
+    <ul>
+        <li><strong>元に戻す:</strong> <code>Ctrl</code> + <code>Z</code></li>
+        <li><strong>やり直す:</strong> <code>Ctrl</code> + <code>Shift</code> + <code>Z</code></li>
+    </ul>
 
-        <h3>色分けで整理</h3>
-        <p>シーンの種類やパートごとに色分けをすることで、構成を視覚的に把握しやすくなります。</p>
-        <ul>
-            <li>「タグ」欄の横にある丸いボタンをクリックすると、カラーパレットが開きます。</li>
-            <li>任意の色を選択すると、シーンブロックの左端に色が付きます。</li>
-        </ul>
-        <div class="image-placeholder"></div>
-
-        <h3>備考・タグ欄の活用</h3>
-        <p>詳細な情報を書き込むための「備考」と「タグ」欄は、クリックで表示/非表示を切り替えられます。デフォルトでは非表示になっており、タイムライン全体をすっきりと見渡せます。</p>
-
-        <hr>
-
-        <h2>4. 便利な機能</h2>
-        <p>より快適に作業を進めるための便利な機能です。</p>
-
-        <h3>時間軸マーカー</h3>
-        <p>BGMの開始位置や重要なカットなど、特定の時間に目印（マーカー）を付けられます。</p>
-        <ul>
-            <li><strong>追加:</strong> タイムルーラー（時間軸）上を<strong>ダブルクリック</strong>します。</li>
-            <li><strong>編集:</strong> マーカーのテキスト部分をクリックすると、ラベル名を自由に変更できます。</li>
-            <li><strong>移動:</strong> マーカー上部の丸いハンドルを左右にドラッグして、位置を微調整できます。</li>
-            <li><strong>削除:</strong> マーカーにカーソルを合わせると表示される「×」ボタンで削除できます。</li>
-        </ul>
-        <div class="image-placeholder"></div>
-
-        <h3>ズーム機能</h3>
-        <ul>
-            <li><strong>ボタン操作:</strong> ヘッダーの「ズーム」セクションにある「+」「-」ボタンでタイムラインを拡大・縮小できます。</li>
-            <li><strong>ショートカット:</strong> <code>Ctrl</code>キー（Macでは<code>Cmd</code>キー）を押しながらマウスホイールを上下にスクロールすることでも、スムーズに拡縮できます。</li>
-        </ul>
-
-        <h3>メモパネルのサイズ調整</h3>
-        <p>画面左の「メモ」パネルとタイムラインの間の境界線をドラッグすることで、自由に幅を調整できます。</p>
-
-        <hr>
-
-        <h2>5. データの管理</h2>
-
-        <h3>自動保存機能</h3>
-        <p>編集を加えると約1.5秒後に、自動でブラウザに作業内容が保存されます。ブラウザを更新したり閉じたりしても、次回開いた際に前回の状態が復元されるので安心です。ヘッダーに「保存中...」「保存済み」のステータスが一時的に表示されます。</p>
-
-        <h3>元に戻す・やり直す（Undo/Redo）</h3>
-        <p>ヘッダーの矢印ボタン、または以下のショートカットキーで、マーカーの追加や削除を含め、ほぼ全ての操作を取り消したり、やり直したりできます。</p>
-        <ul>
-            <li><strong>元に戻す:</strong> <code>Ctrl</code> + <code>Z</code></li>
-            <li><strong>やり直す:</strong> <code>Ctrl</code> + <code>Shift</code> + <code>Z</code></li>
-        </ul>
-
-        <h3>エクスポート機能</h3>
-        <p>ヘッダーの「エクスポート」ボタンから、作成したコンテを様々な形式で書き出せます。</p>
-        <ul>
-            <li><strong>テキスト (.txt):</strong> 台本のようなシンプルな形式で、共有や二次利用に便利です。</li>
-            <li><strong>JSON (.json):</strong> ツールの全データを保存する形式で、バックアップに最適です。</li>
-            <li><strong>CSV (.csv):</strong> 表計算ソフトで管理・分析するのに適しています。</li>
-            <li><strong>PDF (.pdf):</strong> タイムライン全体のレイアウトをそのままA4横サイズのPDFとして書き出します。印刷やデザインの共有に便利です。</li>
-        </ul>
-
-        <hr>
-
-        <p>このツールが、あなたの創作活動の一助となれば幸いです。</p>
-
-    </main>
+    <h3>エクスポート機能</h3>
+    <p>ヘッダーの「エクスポート」ボタンから、作成したコンテを様々な形式で書き出せます。</p>
+    <ul>
+        <li><strong>テキスト (.txt):</strong> 台本のようなシンプルな形式で、共有や二次利用に便利です。</li>
+        <li><strong>JSON (.json):</strong> ツールの全データを保存する形式で、バックアップに最適です。</li>
+        <li><strong>CSV (.csv):</strong> 表計算ソフトで管理・分析するのに適しています。</li>
+        <li><strong>PDF (.pdf):</strong> タイムライン全体のレイアウトをそのままA4横サイズのPDFとして書き出します。印刷やデザインの共有に便利です。</li>
+    </ul>
+    
+    <hr class="my-8">
+    <p class="text-center text-gray-500">このツールが、あなたの創作活動の一助となれば幸いです。</p>
 
 </body>
 </html>
+
+
